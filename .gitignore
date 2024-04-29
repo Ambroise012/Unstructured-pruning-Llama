@@ -2,3 +2,8 @@
 .env
 *.pyc
 *.DS_Store
+llm_weights
+lm-evaluation-harness
+pruned_models
+out
+image_classifiers

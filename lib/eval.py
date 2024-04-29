@@ -161,5 +161,4 @@ def eval_zero_shot(model_name, model, tokenizer, task_list=["boolq","rte","hella
         tokenizer=tokenizer, 
         add_special_tokens=add_special_tokens
     )
-
     return results 

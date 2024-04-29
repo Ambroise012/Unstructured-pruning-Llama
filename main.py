@@ -1,5 +1,6 @@
 import argparse
 import os 
+import csv
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -8,9 +9,11 @@ from importlib.metadata import version
 from lib.prune import prune_wanda, prune_magnitude, prune_sparsegpt, prune_ablate, check_sparsity, find_layers
 from lib.eval import eval_ppl, eval_zero_shot
 
-print('torch', version('torch'))
-print('transformers', version('transformers'))
-print('accelerate', version('accelerate'))
+from codecarbon import EmissionsTracker
+
+# print('torch', version('torch'))
+# print('transformers', version('transformers'))
+# print('accelerate', version('accelerate'))
 print('# of gpus: ', torch.cuda.device_count())
 
 def get_llm(model_name, cache_dir="llm_weights"):
@@ -66,22 +69,56 @@ def main():
     if args.sparsity_ratio != 0:
         print("pruning starts")
         if args.prune_method == "wanda":
+            tracker = EmissionsTracker()
+            tracker.start()
             prune_wanda(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
+            emissions_prune: float = tracker.stop()
+            with open(f'prune_emission.csv', 'a', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([args.prune_method, args.sparsity_ratio, emissions_prune])
         elif args.prune_method == "magnitude":
+            tracker = EmissionsTracker()
+            tracker.start()
             prune_magnitude(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
+            emissions_prune: float = tracker.stop()
+            with open(f'prune_emission.csv', 'a', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([args.prune_method, args.sparsity_ratio, emissions_prune])
         elif args.prune_method == "sparsegpt":
+            tracker = EmissionsTracker()
+            tracker.start()
             prune_sparsegpt(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
+            emissions_prune: float = tracker.stop()
+            with open(f'prune_emission.csv', 'a', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([args.prune_method, args.sparsity_ratio, emissions_prune])
         elif "ablate" in args.prune_method:
+            tracker = EmissionsTracker()
+            tracker.start()
             prune_ablate(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
+            emissions_prune: float = tracker.stop()
+            with open(f'prune_emission.csv', 'a', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([args.prune_method, args.sparsity_ratio, emissions_prune])
 
-    ################################################################
     print("*"*30)
     sparsity_ratio = check_sparsity(model)
     print(f"sparsity sanity check {sparsity_ratio:.4f}")
     print("*"*30)
-    ################################################################
+    ##########  Start of Emissions tracker  #############
+    tracker = EmissionsTracker()
+    tracker.start()
+    ##################  eval  ###########################
     ppl_test = eval_ppl(args, model, tokenizer, device)
-    print(f"wikitext perplexity {ppl_test}")
+
+    #################  End of Emissions  ####################
+    emissions: float = tracker.stop()
+
+
+    ############  register in csv file  ###############
+    with open(f'eval_emission.csv', 'a', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([args.prune_method, sparsity_ratio, emissions, ppl_test])
 
     if not os.path.exists(args.save):
         os.makedirs(args.save)
@@ -89,18 +126,19 @@ def main():
     with open(save_filepath, "w") as f:
         print("method\tactual_sparsity\tppl_test", file=f, flush=True)
         print(f"{args.prune_method}\t{sparsity_ratio:.4f}\t{ppl_test:.4f}", file=f, flush=True)
+    
+    results = eval_zero_shot(args.model, model, tokenizer)
+    # if args.eval_zero_shot:
+    #     accelerate=False
+    #     if "30b" in args.model or "65b" in args.model or "70b" in args.model:
+    #         accelerate=True
 
-    if args.eval_zero_shot:
-        accelerate=False
-        if "30b" in args.model or "65b" in args.model or "70b" in args.model:
-            accelerate=True
-
-        task_list = ["boolq", "rte","hellaswag","winogrande", "arc_easy","arc_challenge", "openbookqa"]
-        num_shot = 0
-        results = eval_zero_shot(args.model, model, tokenizer, task_list, num_shot, accelerate)
-        print("********************************")
-        print("zero_shot evaluation results")
-        print(results)
+    #     task_list = ["boolq", "rte","hellaswag","winogrande", "arc_easy","arc_challenge", "openbookqa"]
+    #     num_shot = 0
+    #     results = eval_zero_shot(args.model, model, tokenizer, task_list, num_shot, accelerate)
+    #     print("********************************")
+    #     print("zero_shot evaluation results")
+    #     print(results)
 
     if args.save_model:
         model.save_pretrained(args.save_model)

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH --job-name=instal        # Job name
+#SBATCH --output=job.%j.out      # Name of output file (%j expands to jobId)
+#SBATCH --cpus-per-task=8       # Schedule one core
+#SBATCH --gres=gpu               # Schedule a GPU
+#SBATCH --time=03:00:00          # Run time (hh:mm:ss) - run for one hour max
+#SBATCH --partition=red    # Run on Brown queue. If you have red queue access, update to #SBATCH --partition=brown,red
+#SBATCH --mail-type=END          # Send an email when the job finishes
+
+echo "Running on $(hostname):"
+
+python main.py  \
+	--model baffo32/decapoda-research-llama-7B-hf \
+    --prune_method sparsegpt   \
+	--sparsity_ratio 0.1    \
+	--sparsity_type unstructured  \
+	--save_model out/sparsegpt \
+	--save out/sparsegpt

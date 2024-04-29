@@ -1,0 +1,333 @@
+# of gpus:  1
+loading llm model baffo32/decapoda-research-llama-7B-hf
+use device  cuda:0
+******************************
+layer 0 sparsity 0.000001
+layer 1 sparsity 0.000001
+layer 2 sparsity 0.000001
+layer 3 sparsity 0.000001
+layer 4 sparsity 0.000001
+layer 5 sparsity 0.000001
+layer 6 sparsity 0.000001
+layer 7 sparsity 0.000001
+layer 8 sparsity 0.000001
+layer 9 sparsity 0.000001
+layer 10 sparsity 0.000001
+layer 11 sparsity 0.000001
+layer 12 sparsity 0.000001
+layer 13 sparsity 0.000001
+layer 14 sparsity 0.000001
+layer 15 sparsity 0.000001
+layer 16 sparsity 0.000001
+layer 17 sparsity 0.000001
+layer 18 sparsity 0.000001
+layer 19 sparsity 0.000001
+layer 20 sparsity 0.000001
+layer 21 sparsity 0.000001
+layer 22 sparsity 0.000001
+layer 23 sparsity 0.000001
+layer 24 sparsity 0.000001
+layer 25 sparsity 0.000001
+layer 26 sparsity 0.000001
+layer 27 sparsity 0.000001
+layer 28 sparsity 0.000001
+layer 29 sparsity 0.000001
+layer 30 sparsity 0.000001
+layer 31 sparsity 0.000001
+sparsity sanity check 0.0000
+******************************
+evaluating on wikitext2
+nsamples 166
+sample 0
+sample 50
+sample 100
+sample 150
+calling set_model function
+calling set_tokenizer function
+Task: rte; number of docs: 277
+Task: rte; document 0; context prompt (starting on next line):
+The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.
+Question: The introduction of the euro has been opposed. True or False?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' True')[0]
+, Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' False')[0]
+)
+Task: boolq; number of docs: 3270
+Task: boolq; document 0; context prompt (starting on next line):
+NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.
+Question: is ncis new orleans over for the season?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' yes')[0]
+, Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' no')[0]
+)
+Task: winogrande; number of docs: 1267
+Task: winogrande; document 0; context prompt (starting on next line):
+People think Rebecca
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('People think Samantha', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+, Req_loglikelihood('People think Rebecca', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+]
+Task: arc_easy; number of docs: 2376
+Task: arc_easy; document 0; context prompt (starting on next line):
+Question: Which is the function of the gallbladder?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store digestive enzymes')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce digestive enzymes')[0]
+]
+Task: openbookqa; number of docs: 500
+Task: openbookqa; document 0; context prompt (starting on next line):
+Atomic 26 is drawn to a device, it could be
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' magnetized')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' Na')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' compass')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' K')[0]
+]
+Task: hellaswag; number of docs: 10042
+Task: hellaswag; document 0; context prompt (starting on next line):
+Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' You can visit a lingerie shop and have them measure you to help you fit a bra to your size, or measure yourself before you shop for a new bra to ensure that you get a good fit. Use a flexible tape measure, like one found in a sewing kit.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' This is why it is important to keep your breasts under protection when in the shower and only wear bras that are larger than your breast size. If you are not wearing a bra, try wearing something that is a little bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' For a girl, a bra with a support strap will be easier for her, because most women are unable to pull through bra straps and bras that are too small will not be able to support breasts from side-to-side. Many bras have even been created that cover the breast side, and can be sent to other women in the world to make them look bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' Choose a color that is flattering to your breast type and specific event, in addition to those that make you uncomfortable. Look for sports bras made from natural material, such as spandex or lycra, as this is a more breathable bra.')[0]
+]
+Task: arc_challenge; number of docs: 1172
+Task: arc_challenge; document 0; context prompt (starting on next line):
+Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The air stays cleaner.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' Cars can travel at faster speeds.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The skills of the drivers improve.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' It becomes safer to drive on the roads.')[0]
+]
+Running loglikelihood requests
+# of gpus:  1
+loading llm model baffo32/decapoda-research-llama-7B-hf
+use device  cuda:0
+pruning starts
+******************************
+layer 0 sparsity 0.100033
+layer 1 sparsity 0.100034
+layer 2 sparsity 0.100044
+layer 3 sparsity 0.100033
+layer 4 sparsity 0.100029
+layer 5 sparsity 0.100038
+layer 6 sparsity 0.100032
+layer 7 sparsity 0.100029
+layer 8 sparsity 0.100018
+layer 9 sparsity 0.100023
+layer 10 sparsity 0.100032
+layer 11 sparsity 0.100027
+layer 12 sparsity 0.100024
+layer 13 sparsity 0.100020
+layer 14 sparsity 0.100044
+layer 15 sparsity 0.100051
+layer 16 sparsity 0.100048
+layer 17 sparsity 0.100035
+layer 18 sparsity 0.100031
+layer 19 sparsity 0.100033
+layer 20 sparsity 0.100046
+layer 21 sparsity 0.100048
+layer 22 sparsity 0.100036
+layer 23 sparsity 0.100035
+layer 24 sparsity 0.100042
+layer 25 sparsity 0.100045
+layer 26 sparsity 0.100041
+layer 27 sparsity 0.100042
+layer 28 sparsity 0.100040
+layer 29 sparsity 0.100030
+layer 30 sparsity 0.100028
+layer 31 sparsity 0.100027
+sparsity sanity check 0.1000
+******************************
+evaluating on wikitext2
+nsamples 166
+sample 0
+sample 50
+sample 100
+sample 150
+calling set_model function
+calling set_tokenizer function
+Task: openbookqa; number of docs: 500
+Task: openbookqa; document 0; context prompt (starting on next line):
+Atomic 26 is drawn to a device, it could be
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' magnetized')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' Na')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' compass')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' K')[0]
+]
+Task: arc_challenge; number of docs: 1172
+Task: arc_challenge; document 0; context prompt (starting on next line):
+Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The air stays cleaner.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' Cars can travel at faster speeds.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The skills of the drivers improve.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' It becomes safer to drive on the roads.')[0]
+]
+Task: hellaswag; number of docs: 10042
+Task: hellaswag; document 0; context prompt (starting on next line):
+Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' You can visit a lingerie shop and have them measure you to help you fit a bra to your size, or measure yourself before you shop for a new bra to ensure that you get a good fit. Use a flexible tape measure, like one found in a sewing kit.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' This is why it is important to keep your breasts under protection when in the shower and only wear bras that are larger than your breast size. If you are not wearing a bra, try wearing something that is a little bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' For a girl, a bra with a support strap will be easier for her, because most women are unable to pull through bra straps and bras that are too small will not be able to support breasts from side-to-side. Many bras have even been created that cover the breast side, and can be sent to other women in the world to make them look bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' Choose a color that is flattering to your breast type and specific event, in addition to those that make you uncomfortable. Look for sports bras made from natural material, such as spandex or lycra, as this is a more breathable bra.')[0]
+]
+Task: boolq; number of docs: 3270
+Task: boolq; document 0; context prompt (starting on next line):
+NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.
+Question: is ncis new orleans over for the season?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' yes')[0]
+, Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' no')[0]
+)
+Task: rte; number of docs: 277
+Task: rte; document 0; context prompt (starting on next line):
+The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.
+Question: The introduction of the euro has been opposed. True or False?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' True')[0]
+, Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' False')[0]
+)
+Task: winogrande; number of docs: 1267
+Task: winogrande; document 0; context prompt (starting on next line):
+People think Rebecca
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('People think Samantha', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+, Req_loglikelihood('People think Rebecca', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+]
+Task: arc_easy; number of docs: 2376
+Task: arc_easy; document 0; context prompt (starting on next line):
+Question: Which is the function of the gallbladder?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store digestive enzymes')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce digestive enzymes')[0]
+]
+Running loglikelihood requests
+# of gpus:  1
+loading llm model baffo32/decapoda-research-llama-7B-hf
+use device  cuda:0
+pruning starts
+******************************
+layer 0 sparsity 0.300047
+layer 1 sparsity 0.300070
+layer 2 sparsity 0.300130
+layer 3 sparsity 0.300088
+layer 4 sparsity 0.300110
+layer 5 sparsity 0.300198
+layer 6 sparsity 0.300141
+layer 7 sparsity 0.300181
+layer 8 sparsity 0.300110
+layer 9 sparsity 0.300121
+layer 10 sparsity 0.300073
+layer 11 sparsity 0.300147
+layer 12 sparsity 0.300096
+layer 13 sparsity 0.300148
+layer 14 sparsity 0.300152
+layer 15 sparsity 0.300097
+layer 16 sparsity 0.300092
+layer 17 sparsity 0.300059
+layer 18 sparsity 0.300129
+layer 19 sparsity 0.300134
+layer 20 sparsity 0.300108
+layer 21 sparsity 0.300118
+layer 22 sparsity 0.300120
+layer 23 sparsity 0.300157
+layer 24 sparsity 0.300074
+layer 25 sparsity 0.300126
+layer 26 sparsity 0.300114
+layer 27 sparsity 0.300084
+layer 28 sparsity 0.300115
+layer 29 sparsity 0.300127
+layer 30 sparsity 0.300135
+layer 31 sparsity 0.300122
+sparsity sanity check 0.3001
+******************************
+evaluating on wikitext2
+nsamples 166
+sample 0
+sample 50
+sample 100
+sample 150
+calling set_model function
+calling set_tokenizer function
+Task: openbookqa; number of docs: 500
+Task: openbookqa; document 0; context prompt (starting on next line):
+Atomic 26 is drawn to a device, it could be
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' magnetized')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' Na')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' compass')[0]
+, Req_loglikelihood('Atomic 26 is drawn to a device, it could be', ' K')[0]
+]
+Task: winogrande; number of docs: 1267
+Task: winogrande; document 0; context prompt (starting on next line):
+People think Rebecca
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('People think Samantha', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+, Req_loglikelihood('People think Rebecca', ' is embarassed, because Samantha made snide comments about the shirt Rebecca was wearing.')[0]
+]
+Task: hellaswag; number of docs: 10042
+Task: hellaswag; document 0; context prompt (starting on next line):
+Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' You can visit a lingerie shop and have them measure you to help you fit a bra to your size, or measure yourself before you shop for a new bra to ensure that you get a good fit. Use a flexible tape measure, like one found in a sewing kit.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' This is why it is important to keep your breasts under protection when in the shower and only wear bras that are larger than your breast size. If you are not wearing a bra, try wearing something that is a little bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' For a girl, a bra with a support strap will be easier for her, because most women are unable to pull through bra straps and bras that are too small will not be able to support breasts from side-to-side. Many bras have even been created that cover the breast side, and can be sent to other women in the world to make them look bigger.')[0]
+, Req_loglikelihood('Personal Care and Style: How to increase breast size with a bra. Check your bra size. Wearing a bra that is too big will not make your breasts look larger. That is why it is important to wear the right size bra for you.', ' Choose a color that is flattering to your breast type and specific event, in addition to those that make you uncomfortable. Look for sports bras made from natural material, such as spandex or lycra, as this is a more breathable bra.')[0]
+]
+Task: arc_challenge; number of docs: 1172
+Task: arc_challenge; document 0; context prompt (starting on next line):
+Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The air stays cleaner.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' Cars can travel at faster speeds.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' The skills of the drivers improve.')[0]
+, Req_loglikelihood('Question: Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\nAnswer:', ' It becomes safer to drive on the roads.')[0]
+]
+Task: arc_easy; number of docs: 2376
+Task: arc_easy; document 0; context prompt (starting on next line):
+Question: Which is the function of the gallbladder?
+Answer:
+(end of prompt on previous line)
+Requests: [Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce bile')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' store digestive enzymes')[0]
+, Req_loglikelihood('Question: Which is the function of the gallbladder?\nAnswer:', ' produce digestive enzymes')[0]
+]
+Task: boolq; number of docs: 3270
+Task: boolq; document 0; context prompt (starting on next line):
+NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.
+Question: is ncis new orleans over for the season?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' yes')[0]
+, Req_loglikelihood('NCIS: New Orleans (season 4) -- The fourth season of NCIS: New Orleans premiered on September 26, 2017 on CBS. The series continues to air following Bull, Tuesday at 10:00 p.m. (ET) and contained 24 episodes. The season concluded on May 15, 2018.\nQuestion: is ncis new orleans over for the season?\nAnswer:', ' no')[0]
+)
+Task: rte; number of docs: 277
+Task: rte; document 0; context prompt (starting on next line):
+The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.
+Question: The introduction of the euro has been opposed. True or False?
+Answer:
+(end of prompt on previous line)
+Requests: (Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' True')[0]
+, Req_loglikelihood('The number of Danes opposed to swapping the krone for the euro has increased slightly to 35.3 percent, up from 34.6 percent in April, according to a poll published on Thursday by Danske Bank.\nQuestion: The introduction of the euro has been opposed. True or False?\nAnswer:', ' False')[0]
+)
+Running loglikelihood requests
+slurmstepd: error: *** JOB 178959 ON cn5 CANCELLED AT 2024-04-29T21:04:16 DUE TO TIME LIMIT ***

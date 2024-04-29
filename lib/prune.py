@@ -36,7 +36,7 @@ def check_sparsity(model):
     layers = model.model.layers
     count = 0 
     total_params = 0
-    for i in range(len(layers)):
+    for i in range(len(layers)): 
         layer = layers[i]
         subset = find_layers(layer)
 
@@ -105,33 +105,67 @@ def return_given_alpha(alpha, sort_res, W_metric, tmp_metric, sum_before):
 def prune_magnitude(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0):
     layers = model.model.layers 
 
-    for i in range(len(layers)):
+    for i in range(len(layers)): # 32 layers for llama 
         layer = layers[i]
+        ####  add  #####
+        # print(f"Layer {i}: {layer}")  
+        ################
         subset = find_layers(layer)
 
+        #######################  ex for the first layer #######################
+        # Layer 0: LlamaDecoderLayer(
+        #     (self_attn): LlamaAttention(
+        #         (q_proj): Linear(in_features=4096, out_features=4096, bias=False)
+        #         (k_proj): Linear(in_features=4096, out_features=4096, bias=False)
+        #         (v_proj): Linear(in_features=4096, out_features=4096, bias=False)
+        #         (o_proj): Linear(in_features=4096, out_features=4096, bias=False)
+        #         (rotary_emb): LlamaRotaryEmbedding()
+        #     )
+        #     (mlp): LlamaMLP(
+        #         (gate_proj): Linear(in_features=4096, out_features=11008, bias=False)
+        #         (down_proj): Linear(in_features=11008, out_features=4096, bias=False)
+        #         (up_proj): Linear(in_features=4096, out_features=11008, bias=False)
+        #         (act_fn): SiLUActivation()
+        #     )
+        #     (input_layernorm): LlamaRMSNorm()
+        #     (post_attention_layernorm): LlamaRMSNorm()
+        # )
+        ########################################################################
+
+        #### visualisation of subset ###
+        # print(f"subset : {subset}" )
+        ################
+
         for name in subset:
-            W = subset[name].weight.data 
-            W_metric = torch.abs(W)
+            W = subset[name].weight.data  # recup les poids de la couche actuelle 
+            W_metric = torch.abs(W)  #valeur absolue des poids
             if prune_n != 0:
-                W_mask = (torch.zeros_like(W)==1)
-                for ii in range(W_metric.shape[1]):
-                    if ii % prune_m == 0:
-                        tmp = W_metric[:,ii:(ii+prune_m)].float()
+                W_mask = (torch.zeros_like(W)==1)  #init un masque de 0
+                for ii in range(W_metric.shape[1]): 
+                    if ii % prune_m == 0: 
+                        tmp = W_metric[:,ii:(ii+prune_m)].float() 
                         W_mask.scatter_(1,ii+torch.topk(tmp, prune_n,dim=1, largest=False)[1], True)
             else:
                 thresh = torch.sort(W_metric.flatten().cuda())[0][int(W.numel()*args.sparsity_ratio)].cpu()
                 W_mask = (W_metric<=thresh)
 
-            W[W_mask] = 0
+            W[W_mask] = 0  # met a 0 les poids marqué dans le masque
+            #####  add  ######
+            # print(len(W))
+            # print(f"Modified weight for layer {i}:")
+            # with torch.no_grad():
+            #     print(W)
+            #print(f"Modified weight for layer {i}: {W}")
+            ##################
 
 def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0):
     use_cache = model.config.use_cache 
-    model.config.use_cache = False 
+    model.config.use_cache = False #ne pas affecté des résultatsd précédent mis en cache
 
     print("loading calibdation data")
-    dataloader, _ = get_loaders("c4",nsamples=args.nsamples,seed=args.seed,seqlen=model.seqlen,tokenizer=tokenizer)
+    dataloader, _ = get_loaders("c4",nsamples=args.nsamples,seed=args.seed,seqlen=model.seqlen,tokenizer=tokenizer) #charge données de calibration
     print("dataset loading complete")
-    with torch.no_grad():
+    with torch.no_grad():  #pas de calcul de gradient
         inps, outs, attention_mask, position_ids = prepare_calibration_input(model, dataloader, device)
 
     layers = model.model.layers
@@ -195,7 +229,7 @@ def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
                         W_mask, cur_sparsity = return_given_alpha(alpha, sort_res, W_metric, tmp_metric, sum_before)
                     print(f"alpha found {alpha} sparsity {cur_sparsity:.6f}")
                 else:
-                    # unstructured pruning
+                    # unstructured pruning : ce qui nous intersse le plus ici
                     indices = sort_res[1][:,:int(W_metric.shape[1]*args.sparsity_ratio)]
                     W_mask.scatter_(1, indices, True)
 
